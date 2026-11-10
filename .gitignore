@@ -1,0 +1,9 @@
+node_modules
+dist
+.freebuff
+*.local
+.DS_Store
+.dev.log
+.dev.pid
+.env
+.env.*
