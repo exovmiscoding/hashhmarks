@@ -35,13 +35,3 @@ npm run preview  # serve the built bundle
 All of them are served from `site.api.espn.com` and need no API key.
 
 These endpoints don't reliably send permissive CORS headers, so the dev server proxies them through `/espn` (see `vite.config.ts`). A production deployment on plain static hosting needs its own proxy or a Worker in front of them; the browser build calls ESPN directly.
-
-## Notes
-
-- Read-only: no accounts, no storage, nothing sent anywhere except the requests above.
-- ESPN's public endpoints are undocumented and can change without notice. If the feed returns nothing, the app says so instead of inventing games.
-- Unofficial fan project. Not affiliated with the NFL, its clubs or ESPN. Team names, marks and logos belong to their owners.
-
-## Stack
-
-React 19, TypeScript and Vite. No UI framework — the layout, type system and components are hand-written. Display type is Anton, text is Inter Tight.
