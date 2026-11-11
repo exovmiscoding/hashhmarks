@@ -6,6 +6,7 @@ const TABS: Array<{ key: TabKey; label: string }> = [
   { key: 'live', label: 'Live desk' },
   { key: 'scores', label: 'Scoreboard' },
   { key: 'news', label: 'Newsroom' },
+  { key: 'cards', label: 'Card room' },
 ];
 
 interface HeaderProps {
@@ -14,9 +15,11 @@ interface HeaderProps {
   online: boolean;
   updatedAt: number | null;
   onRefresh: () => void;
+  account: { username: string; balance: number } | null;
+  onAuth: () => void;
 }
 
-export function Header({ tab, onTab, online, updatedAt, onRefresh }: HeaderProps) {
+export function Header({ tab, onTab, online, updatedAt, onRefresh, account, onAuth }: HeaderProps) {
   return (
     <header className="topbar">
       <div className="topbar-rule" aria-hidden="true" />
@@ -42,6 +45,17 @@ export function Header({ tab, onTab, online, updatedAt, onRefresh }: HeaderProps
             </button>
           ))}
         </nav>
+
+        {account ? (
+          <div className="account-chip" title="Account balance">
+            <span className="account-name">@{account.username}</span>
+            <span className="account-balance">${account.balance.toLocaleString('en-US')}</span>
+          </div>
+        ) : (
+          <button type="button" className="account-chip account-chip--action" onClick={onAuth}>
+            Sign in
+          </button>
+        )}
 
         <div className="feed">
           <span className={`feed-dot${online ? ' is-live' : ''}`} aria-hidden="true" />

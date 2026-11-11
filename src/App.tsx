@@ -7,9 +7,13 @@ import { ScoresBoard } from './components/ScoresBoard';
 import { NewsList } from './components/NewsList';
 import { GameDetail } from './components/GameDetail';
 import { ScoreCelebration } from './components/ScoreCelebration';
+import { CardsDesk } from './components/CardsDesk';
+import { AuthPanel } from './components/AuthPanel';
+import { PlayerStatsSheet } from './components/PlayerStatsSheet';
 import { EmptyState } from './components/ui';
 import { useGameSummary, useLiveScoreboard, useNews, useWeekScoreboard } from './hooks/useNfl';
-import type { Game, ScoreAlert, TabKey } from './lib/types';
+import { useAccount } from './hooks/useAccount';
+import type { Game, PlayerCard, ScoreAlert, TabKey } from './lib/types';
 
 export default function App() {
   const [tab, setTab] = useState<TabKey>('live');
@@ -17,6 +21,10 @@ export default function App() {
   const [seasonType, setSeasonType] = useState(2);
   const [selected, setSelected] = useState<Game | null>(null);
   const [alerts, setAlerts] = useState<ScoreAlert[]>([]);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [cardPlayer, setCardPlayer] = useState<PlayerCard | null>(null);
+
+  const account = useAccount();
 
   const live = useLiveScoreboard();
   const news = useNews();
@@ -105,6 +113,8 @@ export default function App() {
         online={!offline}
         updatedAt={live.updatedAt}
         onRefresh={live.refresh}
+        account={account.user}
+        onAuth={() => setAuthOpen(true)}
       />
       <Ticker games={live.games} />
 
@@ -185,6 +195,10 @@ export default function App() {
             onRefresh={news.refresh}
           />
         ) : null}
+
+        {tab === 'cards' ? (
+          <CardsDesk account={account} onSignIn={() => setAuthOpen(true)} onOpenPlayer={setCardPlayer} />
+        ) : null}
       </main>
 
       <footer className="wrap footer">
@@ -200,6 +214,15 @@ export default function App() {
 
       {detailGame ? <GameDetail game={detailGame} news={news.items} onClose={closeGame} /> : null}
       {alerts[0] ? <ScoreCelebration alert={alerts[0]} onDone={dismissAlert} /> : null}
+      {authOpen ? (
+        <AuthPanel
+          onClose={() => setAuthOpen(false)}
+          onAuthenticate={(mode, username, password) =>
+            mode === 'signup' ? account.signUp(username, password) : account.signIn(username, password)
+          }
+        />
+      ) : null}
+      {cardPlayer ? <PlayerStatsSheet card={cardPlayer} onClose={() => setCardPlayer(null)} /> : null}
     </div>
   );
 }

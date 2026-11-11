@@ -7,3 +7,5 @@ dist
 .dev.pid
 .env
 .env.*
+!.env.example
+.pgdata

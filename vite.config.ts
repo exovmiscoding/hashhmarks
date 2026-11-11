@@ -7,6 +7,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
+      // Accounts, card draws and player stats run in /api (wrangler-free: see server/dev.mjs).
+      '/api': {
+        target: 'http://127.0.0.1:8787',
+        changeOrigin: false,
+      },
       '/espn': {
         target: 'https://site.api.espn.com',
         changeOrigin: true,

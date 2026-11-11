@@ -2038,6 +2038,665 @@ a {
   }
 }
 
+/* --------------------------------------------------------------- card room */
+
+.wallet {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  padding: 18px 20px;
+  box-shadow: 4px 4px 0 rgba(17, 17, 16, 0.12);
+  margin-bottom: 22px;
+}
+
+.wallet-main {
+  min-width: 210px;
+}
+
+.wallet-total {
+  margin: 4px 0 2px;
+  font-family: var(--display);
+  font-size: 46px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.wallet-hint {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-mute);
+  max-width: 44ch;
+}
+
+.wallet-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.wallet-counts {
+  display: flex;
+  gap: 16px;
+}
+
+.wallet-count {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wallet-count b {
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.drawer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  border: 1px solid var(--ink);
+  background: var(--card);
+  box-shadow: 4px 4px 0 rgba(17, 17, 16, 0.12);
+}
+
+.drawer-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 22px 22px;
+  border-right: 1px solid var(--rule);
+}
+
+.drawer-copy {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+.odds {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin: 2px 0 4px;
+}
+
+.odds th,
+.odds td {
+  text-align: left;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 600;
+}
+
+.odds thead th {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.odds tbody th {
+  font-weight: 700;
+}
+
+.odds td:nth-child(2) {
+  color: var(--ink-mute);
+}
+
+.odds-pays {
+  text-align: right;
+  font-family: var(--display);
+  font-size: 15px;
+}
+
+.draw-btn {
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 13px 20px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--red);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.draw-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--red);
+}
+
+.draw-btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--red);
+}
+
+.draw-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: 4px 4px 0 var(--rule);
+}
+
+.drawer-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 22px;
+  background: var(--paper-2);
+  text-align: center;
+  min-height: 290px;
+}
+
+.drawer-payout {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+
+.drawer-blank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.drawer-rule {
+  display: block;
+  width: 54px;
+  height: 3px;
+  background: var(--ink);
+  margin-bottom: 4px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.card-slot {
+  position: relative;
+  display: flex;
+}
+
+.pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 3px 3px 0 rgba(17, 17, 16, 0.14);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.pcard:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(17, 17, 16, 0.24);
+}
+
+.pcard--epic {
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.pcard--legendary {
+  box-shadow: 5px 5px 0 var(--red);
+}
+
+.pcard-team {
+  display: block;
+  height: 5px;
+}
+
+.pcard-photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 4;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+.pcard-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.06);
+}
+
+.pcard-mono {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--display);
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.pcard-jersey {
+  position: absolute;
+  right: 6px;
+  bottom: 5px;
+  font-family: var(--display);
+  font-size: 13px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 0 4px;
+}
+
+.pcard-body {
+  display: block;
+  padding: 9px 11px 7px;
+}
+
+.pcard-name {
+  display: block;
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.06;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.pcard-meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.pcard-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: auto;
+  padding: 6px 11px 7px;
+  border-top: 1px solid var(--rule);
+}
+
+.pcard-reward {
+  font-family: var(--display);
+  font-size: 15px;
+}
+
+.pcard-serial {
+  font-size: 10px;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.pcard--lg {
+  max-width: 232px;
+}
+
+.pcard--lg .pcard-name {
+  font-size: 19px;
+}
+
+.rarity {
+  display: inline-block;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  border: 1px solid var(--ink);
+}
+
+.rarity--common {
+  color: var(--ink-mute);
+  border-color: var(--rule);
+}
+
+.rarity--rare {
+  color: var(--ink);
+}
+
+.rarity--epic {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1b1508;
+}
+
+.rarity--legendary {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.card-copies {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 1;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 1px 4px;
+}
+
+/* ---------------------------------------------------------------- accounts */
+
+.sheet--narrow {
+  width: min(540px, 100%);
+}
+
+.auth-head {
+  display: block;
+  padding: 22px 20px 8px;
+}
+
+.auth-title {
+  margin: 5px 0 7px;
+  font-family: var(--display);
+  font-size: 27px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.auth-copy {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  max-width: 44ch;
+}
+
+.auth-form {
+  display: grid;
+  gap: 12px;
+  padding: 8px 20px 22px;
+}
+
+.field {
+  display: grid;
+  gap: 5px;
+}
+
+.field input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 10px 11px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.field input:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+}
+
+.form-error {
+  margin: 0;
+  color: var(--red);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.auth-submit,
+.auth-switch {
+  justify-self: start;
+}
+
+.account-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.account-chip--action {
+  border-color: var(--ink);
+  cursor: pointer;
+}
+
+.account-chip--action:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.account-name {
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-balance {
+  padding-left: 8px;
+  border-left: 1px solid var(--rule);
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.account-chip--action:hover .account-balance {
+  color: var(--paper);
+}
+
+/* ------------------------------------------------------------ player stats */
+
+.stat-head {
+  display: grid;
+  gap: 14px;
+  padding: 16px 18px 12px;
+}
+
+.stat-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stat-thumb {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 74px;
+  height: 74px;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+}
+
+.stat-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.06);
+}
+
+.stat-thumb-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 20px;
+}
+
+.stat-name {
+  margin: 3px 0 5px;
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.stat-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+
+.stat-bio {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px 16px;
+  width: 100%;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+
+.stat-bio span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat-bio b {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.stat-body {
+  padding: 14px 18px 20px;
+  border-top: 1px solid var(--ink);
+}
+
+.stat-body-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px 24px;
+}
+
+.stat-block h4 {
+  margin: 0 0 5px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.stat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.stat-table th {
+  padding: 4px 0;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat-table td {
+  padding: 4px 0;
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (max-width: 880px) {
+  .drawer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .drawer-panel {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+}
+
+@media (max-width: 620px) {
+  .wallet {
+    align-items: flex-start;
+  }
+
+  .wallet-total {
+    font-size: 38px;
+  }
+
+  .wallet-side {
+    align-items: flex-start;
+  }
+
+  .wallet-counts {
+    gap: 12px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .account-chip {
+    display: none;
+  }
+
+  .field input {
+    font-size: 16px;
+  }
+
+  .auth-form,
+  .auth-head {
+    padding-inline: 16px;
+  }
+
+  .stat-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

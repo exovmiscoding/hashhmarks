@@ -81,4 +81,58 @@ export interface ScoreAlert {
   colors: string[];
 }
 
-export type TabKey = 'live' | 'scores' | 'news';
+export type TabKey = 'live' | 'scores' | 'news' | 'cards';
+
+export type Rarity = 'common' | 'rare' | 'epic' | 'legendary';
+
+export interface PlayerCard {
+  id: string;
+  name: string;
+  position: string;
+  team: string;
+  jersey: string | null;
+  experience: number | null;
+  college: string | null;
+  height: string | null;
+  weight: string | null;
+  headshot: string | null;
+  rarity: Rarity;
+}
+
+export interface Pull extends PlayerCard {
+  reward: number;
+  duplicate?: boolean;
+  pullId?: string;
+  obtainedAt?: string;
+}
+
+export interface Account {
+  id: string;
+  username: string;
+  balance: number;
+  createdAt: string;
+}
+
+export interface AccountStats {
+  counts: Record<Rarity, number>;
+  pulls: number;
+  unique: number;
+}
+
+export interface StatLine {
+  label: string;
+  name: string;
+  value: string;
+}
+
+export interface StatCategory {
+  name: string;
+  label: string;
+  stats: StatLine[];
+}
+
+export interface PlayerStats {
+  player: PlayerCard;
+  season: number;
+  categories: StatCategory[];
+}
